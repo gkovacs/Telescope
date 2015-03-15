@@ -12,6 +12,23 @@ AutoForm.hooks({
           flashMessage('URL must start with http://crowdresearch.stanford.edu', 'error')
           return false
         }
+        /*
+        try {
+          var orig_post_url = doc.url
+          if (Posts != null && Posts.find != null) {
+            var orig_post = Posts.findOne({_id: doc._id})
+            if (orig_post != null) {
+              orig_post_url = orig_post.url
+              if (orig_post_url != doc.url) {
+                flashMessage('Cannot change URL for posts', 'error')
+                return false
+              }
+            }
+          }
+        } catch (err) {
+
+        }
+        */
 
         var post = doc;
 

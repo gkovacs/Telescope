@@ -12,6 +12,20 @@ AutoForm.hooks({
           flashMessage('URL must start with http://crowdresearch.stanford.edu', 'error')
           return false
         }
+        /*
+        try {
+          var duplicate_post = null
+          if (Posts != null && Posts.findOne != null) {
+            duplicate_post = Posts.findOne({url: doc.url}).fetch()
+          }
+          if (duplicate_post != null && duplicate_post._id != null && duplicate_post._id.length > 0) {
+            flashMessage('Already posted at http://' + window.location.host + '/posts/' + duplicate_post._id)
+            return false
+          }
+        } catch (err) {
+
+        }
+        */
 
         template.$('button[type=submit]').addClass('loading');
 
