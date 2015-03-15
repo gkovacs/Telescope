@@ -87,3 +87,5 @@ telescope-subscribe-to-posts
 telescope-tagline-banner
 
 # Custom Packages
+telescope-view-needcomments
+telescope-view-needviews
