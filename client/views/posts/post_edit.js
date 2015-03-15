@@ -4,6 +4,15 @@ AutoForm.hooks({
     before: {
       editPost: function(doc, template) {
 
+        if (doc.url == null) {
+          flashMessage('URL is required', 'error')
+          return false
+        }
+        if (doc.url.indexOf('http://crowdresearch.stanford.edu') != 0 && doc.url.indexOf('https://crowdresearch.stanford.edu') != 0) {
+          flashMessage('URL must start with http://crowdresearch.stanford.edu', 'error')
+          return false
+        }
+
         var post = doc;
 
         // ------------------------------ Checks ------------------------------ //

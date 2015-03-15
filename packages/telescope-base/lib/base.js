@@ -101,6 +101,16 @@ viewsMenu = [
     route: 'posts_best',
     label: 'best',
     description: 'highest_ranked_posts_ever'
+  },
+  {
+    route: 'posts_needcomments',
+    label: 'needcomments',
+    description: 'Posts that need comments'
+  },
+  {
+    route: 'posts_needviews',
+    label: 'needviews',
+    description: 'Posts that need views'
   }
 ];
 
@@ -135,6 +145,24 @@ viewParameters.new = function (terms) {
 viewParameters.best = function (terms) {
   return {
     options: {sort: {sticky: -1, baseScore: -1}}
+  };
+}
+
+viewParameters.needcomments = function (terms) {
+  return {
+    options: {
+      find: {url: {$exists: true}},
+      sort: {commentCount: 1, postedAt: -1}
+    }
+  };
+}
+
+viewParameters.needviews = function (terms) {
+  return {
+    options: {
+      find: {url: {$exists: true}},
+      sort: {clickCount: 1, postedAt: -1}
+    }
   };
 }
 
