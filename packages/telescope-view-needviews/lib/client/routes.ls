@@ -1,13 +1,14 @@
 Meteor.startup ->
-  PostsNeedViewsController = PostsListController.extend {
+  export PostsNeedviewsController = PostsListController.extend {
     view: 'needviews'
   }
   Router.route '/needviews/:limit?', {
     name: 'posts_needviews'
-    controller: PostsNeedViewsController
+    controller: PostsNeedviewsController
   }
 
 viewsMenu.push {
   route: 'posts_needviews'
-  label: 'Need Views'
+  label: 'needviews'
+  description: 'Posts that need views'
 }

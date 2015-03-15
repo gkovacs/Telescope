@@ -1,13 +1,14 @@
 Meteor.startup ->
-  PostsNeedCommentsController = PostsListController.extend {
+  export PostsNeedcommentsController = PostsListController.extend {
     view: 'needcomments'
   }
   Router.route '/needcomments/:limit?', {
     name: 'posts_needcomments'
-    controller: PostsNeedCommentsController
+    controller: PostsNeedcommentsController
   }
 
 viewsMenu.push {
   route: 'posts_needcomments'
-  label: 'Need Comments'
+  label: 'needcomments'
+  description: 'Posts that need comments'
 }
