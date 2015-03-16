@@ -111,6 +111,11 @@ viewsMenu = [
     route: 'posts_needviews',
     label: 'needviews',
     description: 'Posts that need views'
+  },
+  {
+    route: 'posts_needclicks',
+    label: 'needclicks',
+    description: 'Posts that need clicks'
   }
 ];
 
@@ -161,7 +166,43 @@ viewParameters.needviews = function (terms) {
   return {
     options: {
       find: {url: {$exists: true}},
+      sort: {viewCount: 1, postedAt: -1}
+    }
+  };
+}
+
+viewParameters.needclicks = function (terms) {
+  return {
+    options: {
+      find: {url: {$exists: true}},
       sort: {clickCount: 1, postedAt: -1}
+    }
+  };
+}
+
+viewParameters.mostcomments = function (terms) {
+  return {
+    options: {
+      find: {url: {$exists: true}},
+      sort: {commentCount: -1, postedAt: -1}
+    }
+  };
+}
+
+viewParameters.mostviews = function (terms) {
+  return {
+    options: {
+      find: {url: {$exists: true}},
+      sort: {viewCount: -1, postedAt: -1}
+    }
+  };
+}
+
+viewParameters.mostclicks = function (terms) {
+  return {
+    options: {
+      find: {url: {$exists: true}},
+      sort: {clickCount: -1, postedAt: -1}
     }
   };
 }
