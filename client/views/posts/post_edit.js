@@ -21,10 +21,10 @@ AutoForm.hooks({
           return false
         }
         var title_words = doc.title.toLowerCase().split('-').join(' ').split('_').join(' ').split('%20').join(' ').split('=').join(' ').split(':').join(' ').split(',').join(' ').split(';').join(' ').split('/').join(' ').split('?').join(' ').split('!').join(' ').split('.').join(' ').split('&').join(' ').split(' ')
-        var banned_words = ['milestone', 'crowdresearch']
+        var banned_words = ['milestone', 'crowdresearch', 'trustidea', 'darkhorseidea', 'poweridea', 'yourteamname']
         for (var i = 0; i < banned_words.length; ++i) {
          if (title_words.indexOf(banned_words[i]) != -1) {
-            flashMessage('Title should describe the content of your post. Do not include the words Milestone or crowdresearch in it.')
+            flashMessage('Title should describe the content of your post. Do not include the words Milestone, TrustIdea, PowerIdea, DarkHorseIdea, YourTeamName, or crowdresearch in it.')
             window.scrollTo(0, 0)
             return false
           }
