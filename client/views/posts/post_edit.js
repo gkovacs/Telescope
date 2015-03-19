@@ -5,50 +5,52 @@ AutoForm.hooks({
       editPost: function(doc, template) {
 
         clearSeenMessages()
-        if (doc.url == null) {
-          flashMessage('URL is required', 'error')
-          window.scrollTo(0, 0)
-          return false
-        }
-        if (doc.url.indexOf('http://crowdresearch.stanford.edu') != 0) {
-          flashMessage('URL must start with http://crowdresearch.stanford.edu', 'error')
-          window.scrollTo(0, 0)
-          return false
-        }
-        if (doc.title == null) {
-          flashMessage('Title is required')
-          window.scrollTo(0, 0)
-          return false
-        }
-        var title_words = doc.title.toLowerCase().split('-').join(' ').split('_').join(' ').split('%20').join(' ').split('=').join(' ').split(':').join(' ').split(',').join(' ').split(';').join(' ').split('/').join(' ').split('?').join(' ').split('!').join(' ').split('.').join(' ').split('&').join(' ').split(' ')
-        var banned_words = ['milestone', 'crowdresearch', 'trustidea', 'darkhorseidea', 'poweridea', 'yourteamname']
-        for (var i = 0; i < banned_words.length; ++i) {
-         if (title_words.indexOf(banned_words[i]) != -1) {
-            flashMessage('Title should describe the content of your post. Do not include the words Milestone, TrustIdea, PowerIdea, DarkHorseIdea, YourTeamName, or crowdresearch in it.')
+        if (typeof(disablepostchecks) == 'undefined' || !disablepostchecks) {
+          if (doc.url == null) {
+            flashMessage('URL is required', 'error')
             window.scrollTo(0, 0)
             return false
           }
-        }
-        var checkboxes = $('div.checkbox')
-        var categories = []
-        for (var i = 0; i < checkboxes.length; ++i) {
-          var cur_checkbox = $(checkboxes[i])
-          var checkbox_input = cur_checkbox.find('input')
-          var checkbox_type = checkbox_input.attr('name')
-          if (checkbox_type != 'categories') continue
-          if (!checkbox_input.is(':checked')) continue
-          var checkbox_text = cur_checkbox.find('label').text().trim()
-          categories.push(checkbox_text)
-        }
-        if (categories.length != 1) {
-          flashMessage('Please select exactly 1 category', 'error')
-          window.scrollTo(0, 0)
-          return false
-        }
-        if (doc.body == null) {
-          flashMessage('Body is required', 'error')
-          window.scrollTo(0, 0)
-          return false
+          if (doc.url.indexOf('http://crowdresearch.stanford.edu') != 0) {
+            flashMessage('URL must start with http://crowdresearch.stanford.edu', 'error')
+            window.scrollTo(0, 0)
+            return false
+          }
+          if (doc.title == null) {
+            flashMessage('Title is required')
+            window.scrollTo(0, 0)
+            return false
+          }
+          var title_words = doc.title.toLowerCase().split('-').join(' ').split('_').join(' ').split('%20').join(' ').split('=').join(' ').split(':').join(' ').split(',').join(' ').split(';').join(' ').split('/').join(' ').split('?').join(' ').split('!').join(' ').split('.').join(' ').split('&').join(' ').split(' ')
+          var banned_words = ['milestone', 'crowdresearch', 'trustidea', 'darkhorseidea', 'poweridea', 'yourteamname']
+          for (var i = 0; i < banned_words.length; ++i) {
+           if (title_words.indexOf(banned_words[i]) != -1) {
+              flashMessage('Title should describe the content of your post. Do not include the words Milestone, TrustIdea, PowerIdea, DarkHorseIdea, YourTeamName, or crowdresearch in it.')
+              window.scrollTo(0, 0)
+              return false
+            }
+          }
+          var checkboxes = $('div.checkbox')
+          var categories = []
+          for (var i = 0; i < checkboxes.length; ++i) {
+            var cur_checkbox = $(checkboxes[i])
+            var checkbox_input = cur_checkbox.find('input')
+            var checkbox_type = checkbox_input.attr('name')
+            if (checkbox_type != 'categories') continue
+            if (!checkbox_input.is(':checked')) continue
+            var checkbox_text = cur_checkbox.find('label').text().trim()
+            categories.push(checkbox_text)
+          }
+          if (categories.length != 1) {
+            flashMessage('Please select exactly 1 category', 'error')
+            window.scrollTo(0, 0)
+            return false
+          }
+          if (doc.body == null) {
+            flashMessage('Body is required', 'error')
+            window.scrollTo(0, 0)
+            return false
+          }
         }
         /*
         try {
