@@ -5,7 +5,8 @@ AutoForm.hooks({
       editPost: function(doc, template) {
 
         clearSeenMessages()
-        if (typeof(disablepostchecks) == 'undefined' || !disablepostchecks) {
+        //if (typeof(disablepostchecks) == 'undefined' || !disablepostchecks) {
+        if (false) {
           if (doc.url == null) {
             flashMessage('URL is required', 'error')
             window.scrollTo(0, 0)
