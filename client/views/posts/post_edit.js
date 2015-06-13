@@ -11,7 +11,7 @@ AutoForm.hooks({
             window.scrollTo(0, 0)
             return false
           }
-          if (doc.url.indexOf('http://crowdresearch.stanford.edu') != 0) {
+          if (doc.url.indexOf('http://crowdresearch.stanford.edu') != 0 && doc.url.indexOf('http://github.com') != 0 && doc.url.indexOf('https://github.com') != 0 && doc.url.indexOf('http://www.github.com') != 0 && doc.url.indexOf('https://www.github.com') != 0 && doc.url.indexOf('http://trello.com') != 0 && doc.url.indexOf('https://trello.com') != 0) {
             flashMessage('URL must start with http://crowdresearch.stanford.edu', 'error')
             window.scrollTo(0, 0)
             return false
